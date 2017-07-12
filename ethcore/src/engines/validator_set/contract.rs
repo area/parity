@@ -114,7 +114,7 @@ impl ValidatorSet for ValidatorContract {
 	fn report_benign(&self, address: &Address, _set_block: BlockNumber, block: BlockNumber) {
 		match self.provider.report_benign(&*self.transact(), *address, block.into()).wait() {
 			Ok(_) => warn!(target: "engine", "Reported benign validator misbehaviour {}", address),
-			Err(_) => {} //warn!(target: "engine", "Validator {} could not be reported {}", address, s),
+			Err(_) => warn!(target: "engine", "Validator {} could not be reported {}", address, s),
 		}
 	}
 
